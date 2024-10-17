@@ -15,11 +15,11 @@ def get_available_players():
         player_json_list = []
 
         for player in player_data:
-            player_id = player.get("PlayerID")
-            first_name = player.get("FirstName")
-            last_name =  player.get("LastName")
-            position = player.get("Position")
-            team = player.get("Team")
+            player_id = player.get("PlayerID", [])
+            first_name = player.get("FirstName", [])
+            last_name =  player.get("LastName", [])
+            position = player.get("Position", [])
+            team = player.get("Team", [])
         
             player_json = {
                 "player_id": player_id,

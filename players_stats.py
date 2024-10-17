@@ -15,8 +15,8 @@ def get_player_stats():
         player_stats_json_list = []
 
         for player in player_data:
-            player_id = player.get("PlayerID")
-            name = player.get("Name")
+            player_id = player.get("PlayerID", [])
+            name = player.get("Name", [])
             passing_yards = player.get("PassingYards", [])
             recieving_yards = player.get("ReceivingYards", [])
             rushing_yards = player.get("RushingYards", [])
