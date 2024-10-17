@@ -15,11 +15,11 @@ def get_available_players():
         player_json_list = []
 
         for player in player_data:
-            player_id = player.get("PlayerID")
-            first_name = player.get("FirstName")
-            last_name =  player.get("LastName")
-            position = player.get("Position")
-            team = player.get("Team")
+            player_id = player.get("PlayerID", [])
+            first_name = player.get("FirstName", [])
+            last_name =  player.get("LastName", [])
+            position = player.get("Position", [])
+            team = player.get("Team", [])
         
             player_json = {
                 "player_id": player_id,
@@ -36,6 +36,6 @@ def get_available_players():
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
 
-    return 
+    return player_json_list
 
 get_available_players()
