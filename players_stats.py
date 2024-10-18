@@ -1,10 +1,14 @@
 import requests
 import datetime
+from dotenv import load_dotenv
+import os
+
+def configure():
+    load_dotenv()
 
 def get_player_stats():
 
-    api_key = '8fbb50c7c026488eb5f35d84370e44d6'
-    api_url = f'https://api.sportsdata.io/v3/nfl/stats/json/PlayerSeasonStats/2024REG?key={api_key}'
+    api_url = f"https://api.sportsdata.io/v3/nfl/stats/json/PlayerSeasonStats/2024REG?key={os.getenv('api_key')}"
 
     try:
 
@@ -40,4 +44,5 @@ def get_player_stats():
 
     return player_stats_json_list
 
+configure()
 get_player_stats() 
