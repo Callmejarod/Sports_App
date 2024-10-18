@@ -1,14 +1,10 @@
 import requests
 import datetime
-from dotenv import load_dotenv
-import os
-
-def configure():
-    load_dotenv()
 
 def get_available_players():
 
-    api_url = f"https://api.sportsdata.io/v3/nfl/scores/json/PlayersByAvailable?key={os.getenv('api_key')}"
+    api_key = '8fbb50c7c026488eb5f35d84370e44d6'
+    api_url = f'https://api.sportsdata.io/v3/nfl/scores/json/PlayersByAvailable?key={api_key}'
 
     try:
 
@@ -42,5 +38,4 @@ def get_available_players():
 
     return player_json_list
 
-configure()
 get_available_players()
