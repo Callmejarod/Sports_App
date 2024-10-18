@@ -71,7 +71,7 @@ def get_active_players():
 
     print(len(player_list))
 
-    return player_list
+    return player_list[:10]
 configure()
 get_available_players()
 get_active_players()
