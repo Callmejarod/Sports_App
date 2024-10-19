@@ -71,6 +71,8 @@ def get_active_players():
 
     print(len(player_list))
 
+
+    # Pull the first 10 players for now.
     return player_list[:10]
 configure()
 get_available_players()
