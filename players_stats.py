@@ -2,6 +2,7 @@ import requests
 import datetime
 from dotenv import load_dotenv
 import os
+from players import get_available_players 
 
 def configure():
     load_dotenv()
@@ -37,12 +38,34 @@ def get_player_stats():
 
             player_stats_json_list.append(player_json)
 
-        print(player_stats_json_list)
-
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occured: {http_err}")
 
     return player_stats_json_list
 
+def get_player_passing_leader():
+    players_data = get_player_stats()
+    available_players_data = get_available_players()
+    matched_players_list = []
+    max_passing_yards = 0
+
+    for player_stats in players_data:
+        for available_player in available_players_data:
+            if player_stats.get("player_id") == available_player.get("player_id"):
+                matched_players ={
+                    "player_id":player_stats.get("player_id"),
+                    "first_name":available_player.get("first_name"),
+                    "last_name":available_player.get("last_name"),
+                    "passing_yards":player_stats.get("passing_yards")
+                }
+
+                matched_players_list.append(matched_players)
+
+                if player_stats.get("passing_yards") > max_passing_yards:
+                    max_passing_yards = player_stats.get("passing_yards")
+                    leader = matched_players
+
+    return leader
+
 configure()
-get_player_stats()
+get_player_passing_leader()
