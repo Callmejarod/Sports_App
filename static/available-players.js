@@ -50,7 +50,7 @@ class AvailablePlayers extends LitElement {
         try {
             const response = await fetch('/api/players/active');
             this.players = await response.json();
-            this.requestUpdate(); fetched
+            this.requestUpdate(); 
         } catch (error) {
             console.error('Error fetching players:', error);
         }
