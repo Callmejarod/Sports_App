@@ -9,30 +9,40 @@ class AvailablePlayers extends LitElement {
             margin: 25px 0;
             font-size: 16px;
             min-width: 400px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
         th, td {
             padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #555;
         }
 
         th {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #1E1E1E;
+            color: #007ACC; 
             text-align: left;
+            font-weight: bold;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #2D2D2D; 
         }
 
         tr:hover {
-            background-color: #c0ffb3;
+            background-color: #444444; 
         }
 
         td {
+            color: #e5e5e5;
             font-family: 'Arial', sans-serif;
+        }
+
+        thead {
+            background-color: #121212;
+        }
+
+        tbody {
+            background-color: #1E1E1E; 
         }
     `;
 
