@@ -68,6 +68,10 @@ class AvailablePlayers extends LitElement {
 
     render() {
         return html`
+        <div>
+        <button @click="${() => this.handleButtonClick('/api/players/active/passing')}">Passing Stats</button>
+        <button @click="${() => this.handleButtonClick('/api/players/active/running')}">Running Stats</button>
+        <button @click="${() => this.handleButtonClick('/api/players/active/receiving')}">Receiving Stats</button>
         <table>
             <thead>
                 <tr>
@@ -88,6 +92,7 @@ class AvailablePlayers extends LitElement {
                 `)}
             </tbody>
         </table>
+        </div>
         `;
     }
 }

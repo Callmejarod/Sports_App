@@ -11,6 +11,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/players/passing/stats')
+def passing_stats():
+    return render_template('passing.html')
+
 @app.route('/api/players')
 def get_player_data():
     parse_player_data = get_available_players()
