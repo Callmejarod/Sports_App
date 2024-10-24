@@ -49,12 +49,33 @@ class PassingStats extends LitElement {
             font-size: 1.2rem;
             padding: 1rem;
         }
+            
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #007ACC;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
     `;
 
     constructor(){
         super();
         this.players = [];
         this.loading = true;
+        this.currentPage = 1;
+        this.playersPerPage = 10;
     }
 
 
@@ -68,13 +89,35 @@ class PassingStats extends LitElement {
         try {
             const response = await fetch('/api/players/passing/stats');
             this.players = await response.json();
-            
-            console.log("hello")
         } catch (error) {
             console.error('Error fetching players:', error);
         } finally {
             this.loading = false;
             this.requestUpdate(); 
+        }
+    }
+
+    paginatedPlayers() {
+        const start = (this.currentPage - 1) * this.playersPerPage;
+        const end = start + this.playersPerPage;
+        return this.players.slice(start, end);
+    }
+
+    totalPages() {
+        return Math.ceil(this.players.length / this.playersPerPage)
+    }
+
+    nextPage() {
+        if (this.currentPage < this.totalPages()) {
+            this.currentPage++;
+            this.requestUpdate();
+        }
+    }
+
+    prevPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+            this.requestUpdate();
         }
     }
 
@@ -93,7 +136,7 @@ class PassingStats extends LitElement {
                 </tr>
             </thead>
             <tbody>
-                ${this.players.map(player => html`
+                ${this.paginatedPlayers().map(player => html`
                     <tr>
                         <td>${player.first_name}</td>
                         <td>${player.last_name}</td>   
@@ -105,6 +148,11 @@ class PassingStats extends LitElement {
                 `)}
             </tbody>
         </table>
+        <div class="pagination">
+            <button @click="${this.prevPage}" ?disabled="${this.currentPage === 1}">Previous</button>
+            <span>Page ${this.currentPage} of ${this.totalPages()}</span>
+            <button @click="${this.nextPage}" ?disabled="${this.currentPage >= this.totalPages()}">Next</button>
+        </div>
             `}
 
         `

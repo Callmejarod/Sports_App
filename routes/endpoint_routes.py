@@ -9,9 +9,6 @@ routes_bp = Blueprint('routes', __name__)
 def index():
     return render_template('index.html')
 
-@routes_bp.route('/players/passing/stats')
-def passing_stats():
-    return render_template('passing.html')
 
 @routes_bp.route('/api/players')
 def get_player_data():
