@@ -3,7 +3,7 @@ import datetime
 from dotenv import load_dotenv
 import os
 
-from players import get_active_players
+from api.players import get_active_players
 
 def configure():
     load_dotenv()
