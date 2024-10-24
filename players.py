@@ -36,7 +36,6 @@ def get_available_players():
 
             player_json_list.append(player_json)
 
-        print(len(player_json_list))
 
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
@@ -72,10 +71,9 @@ def get_active_players():
 
             player_list.append(player_json)
 
-    print(len(player_list))
 
-    # Pull the first 10 players for now.
-    return player_list[:10]
+    
+    return player_list
 
 
 configure()
