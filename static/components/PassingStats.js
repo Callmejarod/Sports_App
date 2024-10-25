@@ -3,11 +3,12 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/co
 class PassingStats extends LitElement {
     static styles = css`
         table {
-            width: 75%;
+            width: 100%;
+            
             border-collapse: collapse;
             margin: 25px auto;
-            font-size: 12px;
-            min-width: 300px;
+            font-size: 16px;
+            min-width: 800px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -75,7 +76,7 @@ class PassingStats extends LitElement {
         this.players = [];
         this.loading = true;
         this.currentPage = 1;
-        this.playersPerPage = 10;
+        this.playersPerPage = 15;
     }
 
 
