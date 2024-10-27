@@ -3,7 +3,13 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/co
 class PlayersWidgets extends LitElement {
     static styles = css`
         .widget {
-            background-color: #f8f9fa; /* Light background */
+            display: flex; /* Enables flex layout for horizontal alignment */
+            justify-content: center; /* Centers widgets horizontally */
+            gap: 20px; /* Adds space between each widget */      
+        }
+
+        .passing_widget, .rushing_widget, .recieving_widget {
+            background-color: #333; /* Gray background */
             border-radius: 8px; /* Rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
             padding: 20px; /* Space inside the widget */
@@ -14,7 +20,7 @@ class PlayersWidgets extends LitElement {
 
         .loading {
             font-size: 18px; /* Slightly larger text */
-            color: #6c757d; /* Gray color */
+            color: #FFFFFF; /* White color */
             text-align: center; /* Center the loading text */
             margin: 10px 0; /* Space around the loading text */
         }
@@ -35,12 +41,13 @@ class PlayersWidgets extends LitElement {
 
         .player-stats {
             font-size: 18px; /* Font size for stats */
-            color: #343a40; /* Darker gray for stats */
+            color: #FFFFFF; /* White for stats */
             margin: 5px 0; /* Space between stats */
         }
 
-        .player-stats span {
-            font-weight: bold; /* Bold text for the stats */
+        .highlight {
+            color: #007ACC;
+            font-weight: bold;
         }
     `;
 
@@ -72,14 +79,38 @@ class PlayersWidgets extends LitElement {
     render() {
         return html`
             <div class="widget">
-                ${this.loading
-                    ? html`<p class="loading">Loading player data...</p>` 
-                    : html`
-                        <div class="player-info>
-                            <p class="player-name">Passing Leader: ${this.players.first_name} ${this.players.last_name}</p>
-                            <p class="player-stats">Passing Yards: ${this.players.passing_yards} yards</p>
-                        </div>
-                    `}
+                <div class="passing_widget">
+                    ${this.loading
+                        ? html`<p class="loading">Loading player data...</p>` 
+                        : html`
+                            <div class="player-info>
+                                <p class="player-name"><span class="highlight">Passing Leader:</span> ${this.players.first_name} ${this.players.last_name}</p>
+                                <p class="player-stats"><span class="highlight">Passing Yards:</span> ${this.players.passing_yards} yards</p>
+                            </div>
+                        `}
+                </div>
+
+                <div class="rushing_widget">
+                    ${this.loading
+                        ? html`<p class="loading">Loading player data...</p>` 
+                        : html`
+                            <div class="player-info>
+                                <p class="player-name"><span class="highlight">Rushing Leader:</span> ${this.players.first_name} ${this.players.last_name}</p>
+                                <p class="player-stats"><span class="highlight">Rushing Yards:</span> ${this.players.passing_yards} yards</p>
+                            </div>
+                        `}
+                </div>
+
+                <div class="recieving_widget">
+                    ${this.loading
+                        ? html`<p class="loading">Loading player data...</p>` 
+                        : html`
+                            <div class="player-info>
+                                <p class="player-name"><span class="highlight">Recieving Leader:</span> ${this.players.first_name} ${this.players.last_name}</p>
+                                <p class="player-stats"><span class="highlight">Recieving Yards:</span> ${this.players.passing_yards} yards</p>
+                            </div>
+                        `}
+                </div>
             </div>
         `;
     }
