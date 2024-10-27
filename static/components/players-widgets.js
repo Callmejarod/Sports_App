@@ -101,7 +101,7 @@ class PlayersWidgets extends LitElement {
                         : html`
                             <div class="player-info>
                                 <p class="player-name"><span class="highlight">Passing Leader:</span> ${this.players.passing.first_name} ${this.players.passing.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Passing Yards:</span> ${this.players.passing.passing_yards} yards</p>
+                                <p class="player-stats"><span class="highlight">Passing Yards:</span> ${Math.round(this.players.passing.passing_yards)} yards</p>
                             </div>
                         `}
                 </div>
@@ -112,7 +112,7 @@ class PlayersWidgets extends LitElement {
                         : html`
                             <div class="player-info>
                                 <p class="player-name"><span class="highlight">Rushing Leader:</span> ${this.players.rushing.first_name} ${this.players.rushing.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Rushing Yards:</span> ${this.players.rushing.rushing_yards} yards</p>
+                                <p class="player-stats"><span class="highlight">Rushing Yards:</span> ${Math.round(this.players.rushing.rushing_yards)} yards</p>
                             </div>
                         `}
                 </div>
@@ -123,7 +123,7 @@ class PlayersWidgets extends LitElement {
                         : html`
                             <div class="player-info>
                                 <p class="player-name"><span class="highlight">Recieving Leader:</span> ${this.players.recieving.first_name} ${this.players.recieving.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Recieving Yards:</span> ${this.players.recieving.recieving_yards} yards</p>
+                                <p class="player-stats"><span class="highlight">Recieving Yards:</span> ${Math.round(this.players.recieving.recieving_yards)} yards</p>
                             </div>
                         `}
                 </div>
