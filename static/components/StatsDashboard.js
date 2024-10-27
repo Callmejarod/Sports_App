@@ -11,7 +11,17 @@ class StatsDashboard extends LitElement {
             justify-content: center;
         }
 
+        .table-buttons{
+            display: flex;
+            flex-direction: Row;
+            gap: 30px;
 
+        }
+
+        .positional-stats {
+            padding: 10px 20px; 
+            cursor: pointer; 
+        }
     `;
 
     constructor() {
@@ -27,6 +37,11 @@ class StatsDashboard extends LitElement {
     render() {
         return html`
             <div>
+                <div class="table-buttons">
+                    <button class="positional-stats">Passing</button>
+                    <button class="positional-stats">Rushing</button>
+                    <button class="positional-stats">Receiving</button>
+                </div>
                 <passing-stats></passing-stats>
             </div>
         `;
