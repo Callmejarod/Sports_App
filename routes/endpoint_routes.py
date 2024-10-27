@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, render_template
 from api.players import get_available_players, get_active_players
-from api.players_stats import get_passing_player_stats, get_player_passing_leader
+from api.players_stats import get_passing_player_stats, get_player_passing_leader, get_player_rushing_leader, get_player_recieving_leader
 
 
 routes_bp = Blueprint('routes', __name__)
@@ -32,4 +32,14 @@ def get_passing_player_data():
 @routes_bp.route('/api/players/passing/leaders')
 def get_passing_player_leader():
     parse_player_data = get_player_passing_leader()
+    return jsonify(parse_player_data)
+
+@routes_bp.route('/api/players/rushing/leaders')
+def get_rushing_player_leader():
+    parse_player_data = get_player_rushing_leader()
+    return jsonify(parse_player_data)
+
+@routes_bp.route('/api/players/recieving/leaders')
+def get_recieving_player_leader():
+    parse_player_data = get_player_recieving_leader()
     return jsonify(parse_player_data)

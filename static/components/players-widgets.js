@@ -40,7 +40,6 @@ class PlayersWidgets extends LitElement {
         }
 
         .player-stats {
-            font-size: 18px; /* Font size for stats */
             color: #FFFFFF; /* White for stats */
             margin: 5px 0; /* Space between stats */
         }
@@ -65,8 +64,25 @@ class PlayersWidgets extends LitElement {
     async fetchPlayers() { 
         this.loading = true;
         try {
-            const response = await fetch('/api/players/passing/leaders');
-            this.players = await response.json();
+            // Fetch passing leader
+            const passingResponse = await fetch('/api/players/passing/leaders');
+            const passingData = await passingResponse.json();
+
+            // Fetch rushing leader
+            const rushingResponse = await fetch('/api/players/rushing/leaders');
+            const rushingData = await rushingResponse.json();
+
+            // Fetch recieving leader
+            const recievingResponse = await fetch('/api/players/recieving/leaders');
+            const recievingData = await recievingResponse.json();
+
+            // Store data
+            this.players = {
+                passing: passingData,
+                rushing: rushingData,
+                recieving: recievingData,
+            };
+
             this.requestUpdate();
         } catch (error) {
             console.error('Error fetching player\'s stats:', error);
@@ -84,8 +100,8 @@ class PlayersWidgets extends LitElement {
                         ? html`<p class="loading">Loading player data...</p>` 
                         : html`
                             <div class="player-info>
-                                <p class="player-name"><span class="highlight">Passing Leader:</span> ${this.players.first_name} ${this.players.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Passing Yards:</span> ${this.players.passing_yards} yards</p>
+                                <p class="player-name"><span class="highlight">Passing Leader:</span> ${this.players.passing.first_name} ${this.players.passing.last_name}</p>
+                                <p class="player-stats"><span class="highlight">Passing Yards:</span> ${this.players.passing.passing_yards} yards</p>
                             </div>
                         `}
                 </div>
@@ -95,8 +111,8 @@ class PlayersWidgets extends LitElement {
                         ? html`<p class="loading">Loading player data...</p>` 
                         : html`
                             <div class="player-info>
-                                <p class="player-name"><span class="highlight">Rushing Leader:</span> ${this.players.first_name} ${this.players.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Rushing Yards:</span> ${this.players.passing_yards} yards</p>
+                                <p class="player-name"><span class="highlight">Rushing Leader:</span> ${this.players.rushing.first_name} ${this.players.rushing.last_name}</p>
+                                <p class="player-stats"><span class="highlight">Rushing Yards:</span> ${this.players.rushing.rushing_yards} yards</p>
                             </div>
                         `}
                 </div>
@@ -106,8 +122,8 @@ class PlayersWidgets extends LitElement {
                         ? html`<p class="loading">Loading player data...</p>` 
                         : html`
                             <div class="player-info>
-                                <p class="player-name"><span class="highlight">Recieving Leader:</span> ${this.players.first_name} ${this.players.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Recieving Yards:</span> ${this.players.passing_yards} yards</p>
+                                <p class="player-name"><span class="highlight">Recieving Leader:</span> ${this.players.recieving.first_name} ${this.players.recieving.last_name}</p>
+                                <p class="player-stats"><span class="highlight">Recieving Yards:</span> ${this.players.recieving.recieving_yards} yards</p>
                             </div>
                         `}
                 </div>

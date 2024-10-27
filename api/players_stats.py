@@ -108,8 +108,58 @@ def get_player_passing_leader():
 
     return leader
 
+def get_player_rushing_leader():
+    players_data = get_player_stats()
+    available_players_data = get_active_players()
+    matched_players_list = []
+    max_rushing_yards = 0
+
+    for player_stats in players_data:
+        for available_player in available_players_data:
+            if player_stats.get("player_id") == available_player.get("player_id"):
+                matched_players ={
+                    "player_id":player_stats.get("player_id"),
+                    "first_name":available_player.get("first_name"),
+                    "last_name":available_player.get("last_name"),
+                    "rushing_yards":player_stats.get("rushing_yards")
+                }
+
+                matched_players_list.append(matched_players)
+
+                if player_stats.get("rushing_yards") > max_rushing_yards:
+                    max_rushing_yards = player_stats.get("rushing_yards")
+                    leader = matched_players
+
+    return leader
+
+def get_player_recieving_leader():
+    players_data = get_player_stats()
+    available_players_data = get_active_players()
+    matched_players_list = []
+    max_recieving_yards = 0
+
+    for player_stats in players_data:
+        for available_player in available_players_data:
+            if player_stats.get("player_id") == available_player.get("player_id"):
+                matched_players ={
+                    "player_id":player_stats.get("player_id"),
+                    "first_name":available_player.get("first_name"),
+                    "last_name":available_player.get("last_name"),
+                    "recieving_yards":player_stats.get("recieving_yards")
+                }
+
+                matched_players_list.append(matched_players)
+
+                if player_stats.get("recieving_yards") > max_recieving_yards:
+                    max_recieving_yards = player_stats.get("recieving_yards")
+                    leader = matched_players
+
+    return leader
+
 
 configure()
 get_player_stats()
 get_passing_player_stats()
 get_player_passing_leader()
+get_player_rushing_leader()
+get_player_recieving_leader()
