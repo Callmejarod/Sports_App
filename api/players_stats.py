@@ -23,6 +23,7 @@ def get_player_stats():
         for player in player_data:
             player_id = player.get("PlayerID", [])
             name = player.get("Name", [])
+            team = player.get("Team", [])
             passing_yards = player.get("PassingYards", [])
             passing_completions = player.get("PassingCompletions", [])
             passing_attempts = player.get("PassingAttempts", [])
@@ -35,6 +36,7 @@ def get_player_stats():
             player_json = {
                 "player_id":player_id,
                 "name":name,
+                "team":team,
                 "passing_yards":passing_yards,
                 "passing_completions": passing_completions,
                 "passing_attempts": passing_attempts,
@@ -95,6 +97,7 @@ def get_player_passing_leader():
             if player_stats.get("player_id") == available_player.get("player_id"):
                 matched_players ={
                     "player_id":player_stats.get("player_id"),
+                    "team":player_stats.get("team"),
                     "first_name":available_player.get("first_name"),
                     "last_name":available_player.get("last_name"),
                     "passing_yards":player_stats.get("passing_yards")
@@ -119,6 +122,7 @@ def get_player_rushing_leader():
             if player_stats.get("player_id") == available_player.get("player_id"):
                 matched_players ={
                     "player_id":player_stats.get("player_id"),
+                    "team":player_stats.get("team"),
                     "first_name":available_player.get("first_name"),
                     "last_name":available_player.get("last_name"),
                     "rushing_yards":player_stats.get("rushing_yards")
@@ -143,6 +147,7 @@ def get_player_recieving_leader():
             if player_stats.get("player_id") == available_player.get("player_id"):
                 matched_players ={
                     "player_id":player_stats.get("player_id"),
+                    "team":player_stats.get("team"),
                     "first_name":available_player.get("first_name"),
                     "last_name":available_player.get("last_name"),
                     "recieving_yards":player_stats.get("recieving_yards")

@@ -14,6 +14,7 @@ class PlayersWidgets extends LitElement {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
             padding: 20px; /* Space inside the widget */
             max-width: 400px; /* Set a maximum width */
+            max-height: 100px; /* Set a maximum height */
             margin: 20px auto; /* Center the widget on the page */
             font-family: Arial, sans-serif; /* Font style */
         }
@@ -27,19 +28,11 @@ class PlayersWidgets extends LitElement {
 
         .player-info {
             display: flex; /* Use flexbox for layout */
-            flex-direction: column; /* Stack items vertically */
             align-items: center; /* Center items */
-            text-align: center; /* Center text */
+            text-align: left; /* Center text */
         }
 
-        .player-name {
-            font-size: 24px; /* Larger font for player name */
-            font-weight: bold; /* Bold text */
-            color: #007bff; /* Blue color for player name */
-            margin: 5px 0; /* Space above and below the name */
-        }
-
-        .player-stats {
+        .player-stats, .player-name {
             color: #FFFFFF; /* White for stats */
             margin: 5px 0; /* Space between stats */
         }
@@ -48,12 +41,30 @@ class PlayersWidgets extends LitElement {
             color: #007ACC;
             font-weight: bold;
         }
+
+        .team-logo {
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+        }
+
+        .player-details {
+            display: flex; /* Horizontal layout for logo and text */
+            align-items: center; /* Vertically align logo and text */
+            gap: 15px; /* Add space between the logo and text */
+        }
+
+        .player-text {
+            display: flex;
+            flex-direction: column; /* Stack name and stats vertically */
+            gap: 5px; /* Add space between name and stats */
+        }
     `;
 
     constructor() {
         super();
         this.players = [];
         this.loading = true;
+        this.logoPath = 'static/components/logos/';
     }
 
     connectedCallback() {
@@ -96,23 +107,53 @@ class PlayersWidgets extends LitElement {
         return html`
             <div class="widget">
                 <div class="passing_widget">
-                    ${this.loading
-                        ? html`<p class="loading">Loading player data...</p>` 
-                        : html`
-                            <div class="player-info>
-                                <p class="player-name"><span class="highlight">Passing Leader:</span> ${this.players.passing.first_name} ${this.players.passing.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Passing Yards:</span> ${Math.round(this.players.passing.passing_yards)} yards</p>
+                ${this.loading
+                    ? html`<p class="loading">Loading player data...</p>` 
+                    : html`
+                        <div class="player-info">
+                            <div class="player-details">
+                                <img
+                                    class="team-logo"
+                                    src="${this.logoPath}${this.players.passing.team}.png"
+                                    alt="Team Logo"
+                                />
+                                <div class="player-text">
+                                    <p class="player-name">
+                                        <span class="highlight">Passing Leader:</span> 
+                                        ${this.players.passing.first_name} ${this.players.passing.last_name}
+                                    </p>
+                                    <p class="player-stats">
+                                        <span class="highlight">Passing Yards:</span> 
+                                        ${Math.round(this.players.passing.passing_yards)} yards
+                                    </p>
+                                </div>
                             </div>
-                        `}
+                        </div>
+                    `}
                 </div>
+
 
                 <div class="rushing_widget">
                     ${this.loading
                         ? html`<p class="loading">Loading player data...</p>` 
                         : html`
-                            <div class="player-info>
-                                <p class="player-name"><span class="highlight">Rushing Leader:</span> ${this.players.rushing.first_name} ${this.players.rushing.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Rushing Yards:</span> ${Math.round(this.players.rushing.rushing_yards)} yards</p>
+                            <div class="player-info">
+                                <div class="player-details">
+                                    <img
+                                        class="team-logo"
+                                        src="${this.logoPath}${this.players.rushing.team}.png"
+                                    />
+                                    <div class="player-text">
+                                        <p class="player-name">
+                                            <span class="highlight">Rushing Leader:</span> 
+                                            ${this.players.rushing.first_name} ${this.players.rushing.last_name}
+                                        </p>
+                                        <p class="player-stats">
+                                            <span class="highlight">Rushing Yards:</span> 
+                                            ${Math.round(this.players.rushing.rushing_yards)} yards
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         `}
                 </div>
@@ -121,9 +162,23 @@ class PlayersWidgets extends LitElement {
                     ${this.loading
                         ? html`<p class="loading">Loading player data...</p>` 
                         : html`
-                            <div class="player-info>
-                                <p class="player-name"><span class="highlight">Recieving Leader:</span> ${this.players.recieving.first_name} ${this.players.recieving.last_name}</p>
-                                <p class="player-stats"><span class="highlight">Recieving Yards:</span> ${Math.round(this.players.recieving.recieving_yards)} yards</p>
+                            <div class="player-info">
+                                <div class="player-details">
+                                    <img
+                                        class="team-logo"
+                                        src="${this.logoPath}${this.players.recieving.team}.png"
+                                    />
+                                    <div class="player-text">
+                                        <p class="player-name">
+                                            <span class="highlight">Recieving Leader:</span> 
+                                            ${this.players.recieving.first_name} ${this.players.recieving.last_name}
+                                        </p>
+                                        <p class="player-stats">
+                                            <span class="highlight">Recieving Yards:</span> 
+                                            ${Math.round(this.players.recieving.recieving_yards)} yards
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         `}
                 </div>
