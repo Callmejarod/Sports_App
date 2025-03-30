@@ -1,3 +1,9 @@
+"""
+app.py
+
+This module initializes and runs the sports app application.
+"""
+
 from flask import Flask
 from routes.endpoint_routes import routes_bp
 
