@@ -24,13 +24,13 @@ def get_player_stats():
             player_id = player.get("PlayerID", [])
             name = player.get("Name", [])
             team = player.get("Team", [])
-            passing_yards = player.get("PassingYards", [])
+            passing_yards = round(player.get("PassingYards", []))
             passing_completions = player.get("PassingCompletions", [])
             passing_attempts = player.get("PassingAttempts", [])
             Passing_completion_percentage = player.get("PassingCompletionPercentage", [])
             passing_touchdowns = player.get("PassingTouchdowns", [])
-            recieving_yards = player.get("ReceivingYards", [])
-            rushing_yards = player.get("RushingYards", [])
+            recieving_yards = round(player.get("ReceivingYards", []))
+            rushing_yards = round(player.get("RushingYards", []))
             touchdowns = player.get("Touchdowns", [])
 
             player_json = {

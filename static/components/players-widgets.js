@@ -124,7 +124,7 @@ class PlayersWidgets extends LitElement {
                                     </p>
                                     <p class="player-stats">
                                         <span class="highlight">Passing Yards:</span> 
-                                        ${Math.round(this.players.passing.passing_yards)} yards
+                                        ${this.players.passing.passing_yards} yards
                                     </p>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@ class PlayersWidgets extends LitElement {
                                         </p>
                                         <p class="player-stats">
                                             <span class="highlight">Rushing Yards:</span> 
-                                            ${Math.round(this.players.rushing.rushing_yards)} yards
+                                            ${this.players.rushing.rushing_yards} yards
                                         </p>
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@ class PlayersWidgets extends LitElement {
                                         </p>
                                         <p class="player-stats">
                                             <span class="highlight">Recieving Yards:</span> 
-                                            ${Math.round(this.players.recieving.recieving_yards)} yards
+                                            ${this.players.recieving.recieving_yards} yards
                                         </p>
                                     </div>
                                 </div>
