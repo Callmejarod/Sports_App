@@ -36,7 +36,6 @@ def get_available_players():
 
             player_json_list.append(player_json)
 
-
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
 
@@ -71,8 +70,6 @@ def get_active_players():
 
             player_list.append(player_json)
 
-
-    
     return player_list
 
 
